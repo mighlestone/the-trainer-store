@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStockTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('action');
+            $table->boolean('action');
             $table->string('user_id');
             $table->string('shoe_id');
             $table->string('release_id')->nullable();
+            $table->integer('quantity')->default(1);
             $table->integer('price');
             // Fees will be a One to Many relationship
             $table->timestamps();
@@ -41,6 +42,6 @@ class CreateStockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('orders');
     }
 }

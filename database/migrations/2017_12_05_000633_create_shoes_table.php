@@ -17,13 +17,24 @@ class CreateShoesTable extends Migration
             $table->uuid('id');
             $table->string('user_id');
             $table->unsignedInteger('brand_id');
-            $table->unsignedInteger('model_id');
-            $table->string('gender');
+            $table->integer('barcode_number')->nullable();
+            $table->unsignedInteger('model_id')->nullable();
+            $table->boolean('gender');
             $table->unsignedInteger('shoe_category_id');
             // Tags are a Many to Many relationship
             // Maybe price can be collected over average sold price
             $table->integer('price');
+            $table->string('image');
             $table->timestamps();
+
+            $table->foreign('brand_id')
+                ->references('id')
+                ->on('brands')
+                ->onDelete('cascade');
+            $table->foreign('shoe_category_id')
+                ->references('id')
+                ->on('shoe_categories')
+                ->onDelete('cascade');
         });
     }
 

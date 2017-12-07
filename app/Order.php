@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class Release extends Model
+class Order extends Model
 {
     /**
      *  Setup model event hooks

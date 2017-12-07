@@ -15,7 +15,7 @@ class CreateReleaseTypesTable extends Migration
     {
         Schema::create('release_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
         });
     }
 

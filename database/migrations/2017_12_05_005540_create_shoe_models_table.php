@@ -15,7 +15,14 @@ class CreateShoeModelsTable extends Migration
     {
         Schema::create('shoe_models', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('brand_id');
+            $table->string('name');
             $table->timestamps();
+
+            $table->foreign('brand_id')
+                ->references('id')
+                ->on('brands')
+                ->onDelete('cascade');
         });
     }
 

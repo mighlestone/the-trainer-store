@@ -19,9 +19,9 @@ class CreateReleasesTable extends Migration
             $table->string('user_id');
             $table->string('shoe_id');
             $table->unsignedInteger('location_id');
-            $table->integer('price');
+            $table->integer('price')->nullable();
             $table->integer('known_quantity')->nullable();
-            $table->dateTime('date');
+            $table->dateTime('date')->nullable();
             $table->timestamps();
 
             $table->foreign('shoe_id')

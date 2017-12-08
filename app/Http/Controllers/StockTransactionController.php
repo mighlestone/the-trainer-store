@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\StockTransaction;
 use Illuminate\Http\Request;
 
-class StockController extends Controller
+class StockTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $stock
+     * @param  \App\StockTransaction  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $stock)
+    public function show(StockTransaction $stock)
     {
         //
     }
@@ -52,10 +52,10 @@ class StockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $stock
+     * @param  \App\StockTransaction  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $stock)
+    public function edit(StockTransaction $stock)
     {
         //
     }
@@ -64,10 +64,10 @@ class StockController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $stock
+     * @param  \App\StockTransaction  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $stock)
+    public function update(Request $request, StockTransaction $stock)
     {
         //
     }
@@ -75,10 +75,10 @@ class StockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $stock
+     * @param  \App\StockTransaction  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $stock)
+    public function destroy(StockTransaction $stock)
     {
         //
     }

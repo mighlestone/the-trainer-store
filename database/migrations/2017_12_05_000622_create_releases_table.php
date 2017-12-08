@@ -17,16 +17,37 @@ class CreateReleasesTable extends Migration
             $table->uuid('id');
             $table->unsignedInteger('release_type_id');
             $table->string('user_id');
-            $table->string('shoe_id');
+            $table->unsignedInteger('brand_id');
+            $table->unsignedInteger('model_id')->nullable();
+            $table->unsignedInteger('colour_id');
             $table->unsignedInteger('location_id');
+            $table->boolean('gender');
+            $table->unsignedInteger('shoe_category_id');
             $table->integer('price')->nullable();
+            $table->string('image')->nullable();
             $table->integer('known_quantity')->nullable();
             $table->dateTime('date')->nullable();
             $table->timestamps();
 
-            $table->foreign('shoe_id')
+            $table->foreign('release_type_id')
                 ->references('id')
-                ->on('shoes')
+                ->on('release_types')
+                ->onDelete('cascade');
+            $table->foreign('brand_id')
+                ->references('id')
+                ->on('brands')
+                ->onDelete('cascade');
+            $table->foreign('colour_id')
+                ->references('id')
+                ->on('colours')
+                ->onDelete('cascade');
+            $table->foreign('location_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('cascade');
+            $table->foreign('shoe_category_id')
+                ->references('id')
+                ->on('shoe_categories')
                 ->onDelete('cascade');
         });
     }

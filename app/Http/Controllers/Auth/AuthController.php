@@ -74,4 +74,29 @@ class AuthController extends Controller
             ]
         ], 200);
     }
+
+    /**
+     * Log the user out by invalidating their jwt token
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function logout()
+    {
+        $this->auth->invalidate($this->auth->getToken());
+
+        return response(null, 200);
+    }
+
+    /**
+     * Grab the logged in user's details
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function user(Request $request)
+    {
+        return response()->json([
+            'data' => $request->user()
+        ]);
+    }
 }

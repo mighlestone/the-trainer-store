@@ -14,7 +14,7 @@ class CreateFeesTable extends Migration
     public function up()
     {
         Schema::create('fees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->unique();
             $table->string('stock_transaction_id');
             $table->string('label');
             $table->boolean('sum_type');

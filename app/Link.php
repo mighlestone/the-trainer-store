@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
 
-class Fee extends Model
+class Link extends Model
 {
     /**
      *  Setup model event hooks

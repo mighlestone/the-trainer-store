@@ -14,7 +14,7 @@ class CreateReleasesTable extends Migration
     public function up()
     {
         Schema::create('releases', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->unsignedInteger('release_type_id');
             $table->string('user_id');
             $table->unsignedInteger('brand_id');

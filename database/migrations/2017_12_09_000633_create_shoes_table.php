@@ -14,7 +14,7 @@ class CreateShoesTable extends Migration
     public function up()
     {
         Schema::create('shoes', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->string('user_id');
             $table->integer('barcode_number')->nullable();
             $table->unsignedInteger('brand_id');

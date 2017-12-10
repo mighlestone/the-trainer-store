@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ReleaseTypesTableSeeder::class,
             ShoeCategoriesTableSeeder::class,
             ShoeSizesTableSeeder::class,
+            SourcesTableSeeder::class,
         ]);
     }
 }

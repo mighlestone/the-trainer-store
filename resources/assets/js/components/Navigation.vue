@@ -24,13 +24,15 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                <ul class="nav navbar-nav navbar-right" v-if="!user.authenticated">
                     <li><router-link :to="{ name: 'login' }">Login</router-link></li>
                     <li><router-link :to="{ name: 'register' }">Register</router-link></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" v-if="user.authenticated">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                            Username <span class="caret"></span>
+                            {{ user.data.fullname }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -46,3 +48,13 @@
         </div>
     </nav>
 </template>
+
+<script>
+    import { mapGetters } from 'vuex';
+
+    export default {
+        computed: mapGetters({
+            user: 'auth/user'
+        })
+    }
+</script>

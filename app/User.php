@@ -29,6 +29,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that are custom made.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'full_name'
+    ];
+
+    /**
      * The attributes that indicates usage of incrementing IDs
      *
      * @var boolean
@@ -44,5 +53,15 @@ class User extends Authenticatable
         self::creating(function ($model) {
             $model->id = (string) Uuid::generate(4);
         });
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

@@ -5,7 +5,11 @@ class Errors {
 
     get(field) {
         if (this.errors[field]) {
-            return this.errors[field][0];
+            if (Array.isArray(this.errors[field])) {
+                return this.errors[field][0];
+            } else {
+                return this.errors[field];
+            }
         }
     }
 

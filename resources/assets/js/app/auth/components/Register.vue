@@ -104,6 +104,8 @@
                         password_confirmation: this.password_confirmation
                     },
                     context: this
+                }).then(() => {
+                    this.$router.replace({ name: 'home' })
                 })
             }
         }

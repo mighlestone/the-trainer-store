@@ -63,6 +63,8 @@
 <script>
     import { mapActions } from 'vuex';
     import Errors from '../../../classes/Errors';
+    import localforage from 'localforage';
+    import { isEmpty } from 'lodash';
 
     export default {
         data() {
@@ -83,6 +85,14 @@
                         password: this.password,
                     },
                     context: this
+                }).then(() => {
+                    localforage.getItem('intended').then((name) => {
+                        if (isEmpty(name)) {
+                            this.$router.replace({ name: 'home' });
+                            return
+                        }
+                        this.$router.replace({ name: name })
+                    })
                 })
             }
         }

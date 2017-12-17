@@ -38,6 +38,12 @@ export const login = ({ dispatch }, { payload, context }) => {
     });
 };
 
+export const logout = ({ dispatch }) => {
+    return axios.post('api/logout').then((response) => {
+        dispatch('clearAuth');
+    })
+};
+
 /**
  * Sets authentication token to local storage and attaches to http promise
  *

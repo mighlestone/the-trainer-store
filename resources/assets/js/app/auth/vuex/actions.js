@@ -38,6 +38,12 @@ export const login = ({ dispatch }, { payload, context }) => {
     });
 };
 
+/**
+ * Logout the authenticated user
+ *
+ * @param dispatch
+ * @returns {Promise.<TResult>}
+ */
 export const logout = ({ dispatch }) => {
     return axios.post('api/logout').then((response) => {
         dispatch('clearAuth');

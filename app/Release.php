@@ -3,10 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Webpatser\Uuid\Uuid;
 
 class Release extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * No attributes need to be guarded at this time
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
     /**
      *  Setup model event hooks
      */
@@ -17,6 +34,13 @@ class Release extends Model
             $model->id = (string) Uuid::generate(4);
         });
     }
+
+    /**
+     * The attributes that indicates usage of incrementing IDs
+     *
+     * @var boolean
+     */
+    public $incrementing = false;
 
     /**
      * Get the user that created this release

@@ -23,6 +23,7 @@ class CreateStockTransactionsTable extends Migration
             $table->integer('total_price');
             // Fees are a one to many relationship
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('shoe_id')
                 ->references('id')

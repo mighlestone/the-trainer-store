@@ -14,17 +14,11 @@ class ReleaseController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $releases = Release::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'data' => $releases
+        ], 200);
     }
 
     /**
@@ -35,7 +29,24 @@ class ReleaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $release = Release::create([
+            'release_type_id' => $request->release_type_id,
+            'user_id' => $request->user()->id,
+            'brand_id' => $request->brand_id,
+            'model_id' => $request->model_id,
+            'colour_id' => $request->colour_id,
+            'location_id' => $request->location_id,
+            'gender' => $request->gender,
+            'shoe_category_id' => $request->shoe_category_id,
+            'price' => $request->price,
+            'image' => $request->image,
+            'known_quantity' => $request->known_quantity,
+            'date' => $request->date
+        ]);
+
+        return response()->json([
+            'data' => $release->id
+        ], 200);
     }
 
     /**
@@ -46,18 +57,9 @@ class ReleaseController extends Controller
      */
     public function show(Release $release)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Release  $release
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Release $release)
-    {
-        //
+        return response()->json([
+            'data' => $release
+        ], 200);
     }
 
     /**
@@ -69,7 +71,24 @@ class ReleaseController extends Controller
      */
     public function update(Request $request, Release $release)
     {
-        //
+        $release->update([
+            'release_type_id' => $request->release_type_id,
+            'user_id' => $request->user()->id,
+            'brand_id' => $request->brand_id,
+            'model_id' => $request->model_id,
+            'colour_id' => $request->colour_id,
+            'location_id' => $request->location_id,
+            'gender' => $request->gender,
+            'shoe_category_id' => $request->shoe_category_id,
+            'price' => $request->price,
+            'image' => $request->image,
+            'known_quantity' => $request->known_quantity,
+            'date' => $request->date
+        ]);
+
+        return response()->json([
+            'data' => $release->id
+        ], 200);
     }
 
     /**
@@ -80,6 +99,10 @@ class ReleaseController extends Controller
      */
     public function destroy(Release $release)
     {
-        //
+        $release->delete();
+
+        return response()->json([
+            'data' => ''
+        ], 200);
     }
 }

@@ -28,6 +28,7 @@ class CreateShoesTable extends Migration
             $table->integer('stock_quantity')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('brand_id')
                 ->references('id')

@@ -28,6 +28,7 @@ class CreateReleasesTable extends Migration
             $table->integer('known_quantity')->nullable();
             $table->dateTime('date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('release_type_id')
                 ->references('id')

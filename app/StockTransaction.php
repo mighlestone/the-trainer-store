@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Webpatser\Uuid\Uuid;
 
 class StockTransaction extends Model
 {
+    use SoftDeletes;
+
     /**
      *  Setup model event hooks
      */
@@ -17,6 +20,20 @@ class StockTransaction extends Model
             $model->id = (string) Uuid::generate(4);
         });
     }
+
+    /**
+     * The attributes that indicates usage of incrementing IDs
+     *
+     * @var boolean
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * Get the user that created this transaction

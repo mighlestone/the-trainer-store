@@ -19,6 +19,7 @@ class CreateShoesTable extends Migration
             $table->integer('barcode_number')->nullable();
             $table->unsignedInteger('brand_id');
             $table->unsignedInteger('model_id')->nullable();
+            $table->string('model_description')->nullable();
             $table->unsignedInteger('colour_id');
             $table->string('collaborator')->nullable();
             $table->boolean('gender');

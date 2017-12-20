@@ -19,10 +19,13 @@ class CreateReleasesTable extends Migration
             $table->string('user_id');
             $table->unsignedInteger('brand_id');
             $table->unsignedInteger('model_id')->nullable();
+            $table->string('model_description')->nullable();
             $table->unsignedInteger('colour_id');
             $table->unsignedInteger('location_id');
             $table->boolean('gender');
             $table->unsignedInteger('shoe_category_id');
+            $table->boolean('converted');
+            $table->string('converted_id')->nullable();
             $table->integer('price')->nullable();
             $table->string('image')->nullable();
             $table->integer('known_quantity')->nullable();

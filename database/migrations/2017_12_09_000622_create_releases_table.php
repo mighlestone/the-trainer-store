@@ -21,6 +21,7 @@ class CreateReleasesTable extends Migration
             $table->unsignedInteger('model_id')->nullable();
             $table->string('model_description')->nullable();
             $table->unsignedInteger('colour_id');
+            $table->string('collaboration')->nullable();
             $table->unsignedInteger('location_id');
             $table->boolean('gender');
             $table->unsignedInteger('shoe_category_id');

@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     /**
+     * The attributes that indicates usage of incrementing IDs
+     *
+     * @var boolean
+     */
+    public $incrementing = false;
+
+    /**
      *  Setup model event hooks
      */
     public static function boot()

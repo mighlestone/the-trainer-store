@@ -21,7 +21,7 @@ class CreateShoesTable extends Migration
             $table->unsignedInteger('model_id')->nullable();
             $table->string('model_description')->nullable();
             $table->unsignedInteger('colour_id');
-            $table->string('collaborator')->nullable();
+            $table->string('collaboration')->nullable();
             $table->boolean('gender');
             $table->unsignedInteger('shoe_category_id');
             // Tags are a Many to Many relationship

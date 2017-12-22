@@ -14,17 +14,11 @@ class ShoeController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $shoes = Shoe::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'data' => $shoes
+        ], 200);
     }
 
     /**
@@ -35,7 +29,26 @@ class ShoeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shoe = Shoe::create([
+            'user_id' => $request->user()->id,
+            'barcode_number' => $request->barcode_number,
+            'brand_id' => $request->brand_id,
+            'model_id' => $request->model_id,
+            'model_description' => $request->model_description,
+            'colour_id' => $request->colour_id,
+            'collaboration' => $request->collaboration,
+            'gender' => $request->gender,
+            'shoe_category_id' => $request->shoe_category_id,
+            'price' => $request->price,
+            'stock_quantity' => $request->stock_quantity,
+            'image' => $request->image
+        ]);
+
+        return response()->json([
+            'data' => [
+                'id' => $shoe->id
+            ]
+        ], 200);
     }
 
     /**
@@ -46,18 +59,9 @@ class ShoeController extends Controller
      */
     public function show(Shoe $shoe)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Shoe  $shoe
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Shoe $shoe)
-    {
-        //
+        return response()->json([
+            'data' => $shoe
+        ], 200);
     }
 
     /**
@@ -69,7 +73,25 @@ class ShoeController extends Controller
      */
     public function update(Request $request, Shoe $shoe)
     {
-        //
+        $shoe->update([
+            'barcode_number' => $request->barcode_number,
+            'brand_id' => $request->brand_id,
+            'model_id' => $request->model_id,
+            'model_description' => $request->model_description,
+            'colour_id' => $request->colour_id,
+            'collaboration' => $request->collaboration,
+            'gender' => $request->gender,
+            'shoe_category_id' => $request->shoe_category_id,
+            'price' => $request->price,
+            'stock_quantity' => $request->stock_quantity,
+            'image' => $request->image
+        ]);
+
+        return response()->json([
+            'data' => [
+                'id' => $shoe->id
+            ]
+        ], 200);
     }
 
     /**
@@ -80,6 +102,12 @@ class ShoeController extends Controller
      */
     public function destroy(Shoe $shoe)
     {
-        //
+        $shoe->delete();
+
+        return response()->json([
+            'data' => [
+                'message' => 'success'
+            ]
+        ], 200);
     }
 }

@@ -10,6 +10,9 @@ class Shoe extends Model
 {
     use SoftDeletes;
 
+    protected $appends = ['price'];
+    protected $attributes = ['price'];
+
     /**
      *  Setup model event hooks
      */
@@ -34,6 +37,30 @@ class Shoe extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Convert integer price to a double|float
+     *
+     * @return float|int|null
+     */
+    public function getPriceAttribute()
+    {
+        if (isset($this->attributes['price'])) {
+            return $this->attributes['price'] / 100;
+        }
+
+        return null;
+    }
+
+    /**
+     * Convert double|float price to integer
+     *
+     * @param $value
+     */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = $value * 100;
+    }
 
     /**
      * Get the user that created this shoe

@@ -10,6 +10,9 @@ class Release extends Model
 {
     use SoftDeletes;
 
+    protected $appends = ['price'];
+    protected $attributes = ['price'];
+
     /**
      * No attributes need to be guarded at this time
      *
@@ -25,6 +28,13 @@ class Release extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * The attributes that indicates usage of incrementing IDs
+     *
+     * @var boolean
+     */
+    public $incrementing = false;
+
+    /**
      *  Setup model event hooks
      */
     public static function boot()
@@ -36,11 +46,28 @@ class Release extends Model
     }
 
     /**
-     * The attributes that indicates usage of incrementing IDs
+     * Convert integer price to a double|float
      *
-     * @var boolean
+     * @return float|int|null
      */
-    public $incrementing = false;
+    public function getPriceAttribute()
+    {
+        if (isset($this->attributes['price'])) {
+            return $this->attributes['price'] / 100;
+        }
+
+        return null;
+    }
+
+    /**
+     * Convert double|float price to integer
+     *
+     * @param $value
+     */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = $value * 100;
+    }
 
     /**
      * Get the user that created this release

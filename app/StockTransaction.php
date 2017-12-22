@@ -10,6 +10,9 @@ class StockTransaction extends Model
 {
     use SoftDeletes;
 
+    protected $appends = ['total_price'];
+    protected $attributes = ['total_price'];
+
     /**
      *  Setup model event hooks
      */
@@ -34,6 +37,30 @@ class StockTransaction extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Convert integer price to a double|float
+     *
+     * @return float|int|null
+     */
+    public function getPriceAttribute()
+    {
+        if (isset($this->attributes['total_price'])) {
+            return $this->attributes['total_price'] / 100;
+        }
+
+        return null;
+    }
+
+    /**
+     * Convert double|float price to integer
+     *
+     * @param $value
+     */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['total_price'] = $value * 100;
+    }
 
     /**
      * Get the user that created this transaction
